@@ -10,10 +10,14 @@ const current1Element = document.getElementById("current--1");
 
 const diceElement = document.querySelector(".dice");
 const rollButton = document.querySelector(".btn--roll");
+const holdButton = document.querySelector(".btn--hold");
 
 ////////////////////---------- STARTING CONDITIONS ----------\\\\\\\\\\\\\\\\\\\\
-let currentScore = 0;
-let activePlayer = 0;
+let currentScore, activePlayer, scores;
+
+scores = [0, 0];
+currentScore = 0;
+activePlayer = 0;
 
 diceElement.classList.add("hidden");
 score0Element.textContent = 0;
@@ -31,6 +35,20 @@ rollButton.addEventListener("click", function () {
   if (dice !== 1) {
     currentScore += dice;
     displayCurrentScore();
+  } else {
+    switchPlayer();
+  }
+});
+
+holdButton.addEventListener("click", function () {
+  scores[activePlayer] += currentScore;
+
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+  if (scores[activePlayer] >= 100) {
+    diceElement.classList.add("hidden");
+    document.querySelector(`.player--${activePlayer}`).classList.remove("player--active");
+    document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
   } else {
     switchPlayer();
   }
