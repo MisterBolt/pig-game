@@ -15,13 +15,21 @@ const rollButton = document.querySelector(".btn--roll");
 const holdButton = document.querySelector(".btn--hold");
 const newButton = document.querySelector(".btn--new");
 
+const modalOverlay = document.querySelector(".overlay");
+const modalWindow = document.querySelector(".modal");
+const yesModalButton = document.getElementById("yes-modal-button");
+const noModalButton = document.getElementById("no-modal-button");
+
 ////////////////////---------- STARTING CONDITIONS ----------\\\\\\\\\\\\\\\\\\\\
 let currentScore, activePlayer, scores, playing;
 
 init();
 
 ////////////////////---------- BUTTONS FUNCTIONALITY ----------\\\\\\\\\\\\\\\\\\\\
-newButton.addEventListener("click", init);
+newButton.addEventListener("click", toggleModal);
+
+yesModalButton.addEventListener("click", init);
+noModalButton.addEventListener("click", toggleModal);
 
 rollButton.addEventListener("click", function () {
   if (playing) {
@@ -73,6 +81,7 @@ function init() {
   current0Element.textContent = 0;
   current1Element.textContent = 0;
 
+  toggleModal();
   diceElement.classList.add("hidden");
   winner0Element.classList.add("hidden");
   winner1Element.classList.add("hidden");
@@ -99,4 +108,9 @@ function switchPlayer() {
   activePlayer = activePlayer === 0 ? 1 : 0;
   player0Element.classList.toggle("player--active");
   player1Element.classList.toggle("player--active");
+}
+
+function toggleModal() {
+  modalOverlay.classList.toggle("hidden");
+  modalWindow.classList.toggle("hidden");
 }
