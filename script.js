@@ -5,6 +5,8 @@ const player0Element = document.querySelector(".player--0");
 const player1Element = document.querySelector(".player--1");
 const score0Element = document.getElementById("score--0");
 const score1Element = document.getElementById("score--1");
+const winner0Element = document.getElementById("winner--0");
+const winner1Element = document.getElementById("winner--1");
 const current0Element = document.getElementById("current--0");
 const current1Element = document.getElementById("current--1");
 
@@ -47,8 +49,12 @@ holdButton.addEventListener("click", function () {
       playing = false;
 
       diceElement.classList.add("hidden");
+      rollButton.classList.add("hidden");
+      holdButton.classList.add("hidden");
+      newButton.textContent = "🔄 New game";
       document.querySelector(`.player--${activePlayer}`).classList.remove("player--active");
       document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
+      document.getElementById(`winner--${activePlayer}`).classList.remove("hidden");
     } else {
       switchPlayer();
     }
@@ -68,6 +74,11 @@ function init() {
   current1Element.textContent = 0;
 
   diceElement.classList.add("hidden");
+  winner0Element.classList.add("hidden");
+  winner1Element.classList.add("hidden");
+  rollButton.classList.remove("hidden");
+  holdButton.classList.remove("hidden");
+  newButton.textContent = "🔄 Reset game";
   player0Element.classList.remove("player--winner");
   player1Element.classList.remove("player--winner");
   player0Element.classList.add("player--active");

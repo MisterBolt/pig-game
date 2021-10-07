@@ -63,6 +63,13 @@ main {
   margin-bottom: auto;
 }
 
+.winner {
+  font-size: 6rem;
+  font-weight: 700;
+  color: gold;
+  text-transform: uppercase;
+}
+
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
@@ -163,7 +170,7 @@ main {
 
 .player--winner .name {
   font-weight: 700;
-  color: #c7365f;
+  color: gold;
 }
 
 .hidden {
